@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Change</title>
+  </head>
+  <body>
+    <style>
+      :root.dark {
+        --background-color: #0c1a40;
+        --text-color: #fff;
+      }
+      :root.light {
+        --text-color: #0c1a40;
+        --background-color: #fff;
+      }
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column nowrap;
+        padding: 10px;
+        font-size: 24px;
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
+      button {
+        background-color: inherit;
+        color: inherit;
+        border: 2px solid var(--text-color);
+        padding: 5px;
+      }
+    </style>
+    <main>
+      <p>
+        You are viewing the page in <span class="themeName">light theme</span>
+      </p>
+      <button>Toggle theme</button>
+    </main>
+    <script>
+      function setTheme() {
+        const root = document.documentElement; // Get the root element
+        // toggle theme
+        const newTheme = root.className === "dark" ? "light" : "dark";
+        root.className = newTheme;
+
+        document.querySelector(".themeName").textContent = newTheme;
+      }
+      setTheme();
+      const button = document.querySelector("button");
+      button.addEventListener("click", setTheme);
+    </script>
+  </body>
+</html>
